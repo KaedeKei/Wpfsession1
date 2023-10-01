@@ -51,11 +51,17 @@ namespace Wpfsession1
 
         private async void Button_Save_Click(object sender, RoutedEventArgs e)
         {
-            using (System.IO.StreamWriter streamWriter = new System.IO.StreamWriter("report.txt"))
+        try
             {
-                await streamWriter.WriteLineAsync(textBoxContent.Text);
-                MessageBox.Show("Результат сохранен.");
+                using (System.IO.StreamWriter streamWriter = new System.IO.StreamWriter("report.txt"))
+                {
+                    await streamWriter.WriteLineAsync(textBoxContent.Text);
+                    MessageBox.Show("Результат сохранен.");
+                }
             }
-        }
+        catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            } 
     }
 }
