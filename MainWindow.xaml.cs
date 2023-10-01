@@ -43,6 +43,15 @@ namespace Wpfsession1
                 var my_headers = response.Headers;
                 textBoxHeaders.Text = "Заголовки: \r\n" + my_headers.ToString();
             }
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show("Ошибка соединения с сервером. Интернет-соединение отсутсвует или сервер недоступен.");
+            }
+            catch (UriFormatException ex)
+            {
+                MessageBox.Show("Некорректно введен адрес, проверьте и попробуйте снова.");
+            }
+            
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -61,7 +70,7 @@ namespace Wpfsession1
             }
         catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "Ошибка, результат не сохранен.", MessageBoxButton.OK, MessageBoxImage.Error);
             } 
     }
 }
